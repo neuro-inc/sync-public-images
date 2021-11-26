@@ -1,6 +1,9 @@
 name: Sync
 
 on:
+  push:
+    # Force re-run on push to master
+    branches: [master]
   schedule:
   - cron: 0 2 * * *
 
