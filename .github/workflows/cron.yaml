@@ -1,0 +1,25 @@
+name: Sync
+
+on:
+  schedule:
+  - cron: 0 2 * * *
+
+jobs:
+  sync:
+    strategy:
+      matrix:
+        image: ['alpine:latest', 'nginx:latest', 'ubuntu:latest']
+    runs-on: ubuntu-latest
+    steps:
+    - name: Login ghcr.io
+      uses: docker/login-action@v1.10.0
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Pull original
+      run: |
+        docker pull ${{ matrix.image }}
+    - name:  Push cache
+      run: |
+        docker push ghcr.io/neuro-inc/${{ matrix.image }}
