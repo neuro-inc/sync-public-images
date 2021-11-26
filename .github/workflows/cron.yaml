@@ -25,4 +25,5 @@ jobs:
         docker pull ${{ matrix.image }}
     - name:  Push cache
       run: |
+        docker tag ${{ matrix.image }} ghcr.io/neuro-inc/${{ matrix.image }}
         docker push ghcr.io/neuro-inc/${{ matrix.image }}
