@@ -20,6 +20,7 @@ jobs:
         - 'nginx:latest'
         - 'ubuntu:latest'
         - 'codercom/code-server:latest'
+        - 'codercom/code-server:3.4.1'
         - 'filebrowser/filebrowser:v2'
     runs-on: ubuntu-latest
     steps:
