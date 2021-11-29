@@ -19,7 +19,6 @@ jobs:
         - 'alpine:latest'
         - 'nginx:latest'
         - 'ubuntu:latest'
-        - 'codercom/code-server:latest'
         - 'codercom/code-server:3.4.1'
         - 'filebrowser/filebrowser:v2'
     runs-on: ubuntu-latest
@@ -34,9 +33,12 @@ jobs:
       run: |
         docker pull ${{ matrix.image }}
     - name:  Push cache
+      # Push as the latest tag only
+      # Pipelines always run ${IMG}:latest image, not specific tag
       run: |
         TARGET="${SRC##*/}"
-        docker tag ${SRC} ghcr.io/neuro-inc/${TARGET}
-        docker push ghcr.io/neuro-inc/${TARGET}
+        IMG="${TARGET%:*}"
+        docker tag ${SRC} ghcr.io/neuro-inc/${IMG}:latest
+        docker push ghcr.io/neuro-inc/${IMG}:laster
       env:
         SRC: ${{ matrix.image }}
