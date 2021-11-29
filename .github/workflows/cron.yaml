@@ -34,11 +34,7 @@ jobs:
         docker pull ${{ matrix.image }}
     - name:  Push cache
       run: |
-        if [[ "${SRC}" =~ "/" ]]; then
-          TARGET="${SRC##*}"
-        else
-          TARGET="${SRC}"
-        fi
+        TARGET="${SRC##*/}"
         docker tag ${SRC} ghcr.io/neuro-inc/${TARGET}
         docker push ghcr.io/neuro-inc/${TARGET}
       env:
