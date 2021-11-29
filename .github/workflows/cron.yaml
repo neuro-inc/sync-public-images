@@ -15,7 +15,12 @@ jobs:
   sync:
     strategy:
       matrix:
-        image: ['alpine:latest', 'nginx:latest', 'ubuntu:latest']
+        image:
+        - 'alpine:latest'
+        - 'nginx:latest'
+        - 'ubuntu:latest'
+        - 'codercom/code-server:latest'
+        - 'filebrowser/filebrowser:v2'
     runs-on: ubuntu-latest
     steps:
     - name: Login ghcr.io
@@ -29,5 +34,8 @@ jobs:
         docker pull ${{ matrix.image }}
     - name:  Push cache
       run: |
-        docker tag ${{ matrix.image }} ghcr.io/neuro-inc/${{ matrix.image }}
-        docker push ghcr.io/neuro-inc/${{ matrix.image }}
+        TARGET="${SRC##*}"
+        docker tag ${SRC} ghcr.io/neuro-inc/${TARGET}
+        docker push ghcr.io/neuro-inc/${TARGET}
+      env:
+        SRC: ${{ matrix.image }}
