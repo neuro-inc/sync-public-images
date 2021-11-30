@@ -39,6 +39,6 @@ jobs:
         TARGET="${SRC##*/}"
         IMG="${TARGET%:*}"
         docker tag ${SRC} ghcr.io/neuro-inc/${IMG}:latest
-        docker push ghcr.io/neuro-inc/${IMG}:laster
+        docker push ghcr.io/neuro-inc/${IMG}:latest
       env:
         SRC: ${{ matrix.image }}
