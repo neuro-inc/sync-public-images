@@ -44,7 +44,7 @@ jobs:
       matrix:
         image:
         - 'ghcr.io/neuro-inc/web-shell:latest'
-        - 'cdr/code-server:3.12.0'
+        - 'codercom/code-server:3.12.0'
         - 'filebrowser/filebrowser:v2'
         - 'ghcr.io/neuro-inc/base:latest'
         - 'ghcr.io/neuro-inc/docker-registry-frontend:latest'
