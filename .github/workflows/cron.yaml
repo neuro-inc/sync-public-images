@@ -48,6 +48,7 @@ jobs:
         - 'filebrowser/filebrowser:v2'
         - 'ghcr.io/neuro-inc/base:latest'
         - 'ghcr.io/neuro-inc/docker-registry-frontend:latest'
+        - 'registry.jetbrains.team/p/prj/containers/projector-pycharm-c:latest'
     runs-on: ubuntu-latest
     steps:
     - name: Login ghcr.io
